@@ -126,7 +126,7 @@ const Discover = () => {
               {
                 mainData?.map((data, index)=>(
                   <ItemCardContainer
-                  key={"100"}
+                  key={index}
                   imageSrc={
                  data?.photo?.images?.medium?.url ? 
                  data?.photo?.images?.medium?.url
@@ -135,6 +135,7 @@ const Discover = () => {
                   }
                   title={data?.name}
                   location={data?.location_string}
+                  data={data}
                 />
                 ))
               }
