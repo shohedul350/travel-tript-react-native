@@ -18,7 +18,7 @@ import ItemCardContainer from "../components/ItemCardContainer";
 import { getPlacesData } from '../api/index'
 
 const Discover = () => {
-  const [type, setType] = useState("");
+  const [type, setType] = useState("restaurants");
   const [isLoading, setLoading] = useState(false);
   const [mainData, setMainData] = useState([]);
 
@@ -32,20 +32,20 @@ const Discover = () => {
 
   useEffect(()=>{
     setLoading(true)
-    getPlacesData().then(data=>{
+    getPlacesData(type).then(data=>{
       setMainData(data)
       setInterval(() => {
         setLoading(false)
       }, 2000);
     })
 
-  },[])
+  },[type])
 
   return (
     <SafeAreaView className="bg-white flex-1 relative">
-      <View className="flex-row items-center justify-between px-8 pt-8">
+      <View className="flex-row items-center justify-between px-8 pt-8 shadow-lg">
         <View>
-          <Text className="text-[36px] text-[#0B64]">Discover</Text>
+          <Text className="text-[36px] text-[#2C7379]">Discover</Text>
           <Text className="text-[30px] text-[#527283]">The beauty today</Text>
         </View>
         <View className="w-12 h-12 bg-gray-400 rounded-md items-center justify-center shadow-lg">
@@ -56,7 +56,7 @@ const Discover = () => {
         </View>
       </View>
 
-      <View className="flex-row items-center bg-white mx-4 rounded-xl py-1 shadow-lg mt-4">
+      <View className="flex-row items-center bg-gray-50 mx-4 rounded-xl py-1 shadow-md mt-4">
         <GooglePlacesAutocomplete
           placeholder="Search"
           onPress={(data, details = null) => {
@@ -81,7 +81,8 @@ const Discover = () => {
         <ScrollView>
         <View className="flex-row items-center justify-between px-8 mt-8">
           <MenuContainer
-            key={"hole"}
+             name="hotels"
+            key={"hotel"}
             title="Hotels"
             imageSrc={Hotels}
             type={type}
@@ -89,6 +90,7 @@ const Discover = () => {
           />
 
           <MenuContainer
+            name="attractions"
             key={"attractions"}
             title="Attractions"
             imageSrc={Attractions}
@@ -97,6 +99,7 @@ const Discover = () => {
           />
 
           <MenuContainer
+             name="restaurants"
             key={"restaurants"}
             title="Restaurants"
             imageSrc={Restaurants}

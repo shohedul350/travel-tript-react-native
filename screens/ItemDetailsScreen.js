@@ -15,7 +15,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 const ItemDetailsScreen = ({ route }) => {
   const navigation = useNavigation();
 
-  const data = route?.params?.params;
+  const data = route?.params?.params || {};
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,6 +23,8 @@ const ItemDetailsScreen = ({ route }) => {
     });
   }, []);
 
+  console.log(data?.phone, data?.email , data?.address);
+  
   return (
     <SafeAreaView className="flex-1 bg-white relative">
       <ScrollView className="flex-1 px-4 py-6">
@@ -44,7 +46,7 @@ const ItemDetailsScreen = ({ route }) => {
               <FontAwesome5 name="chevron-left" size={24} color="#06B2BE" />
             </TouchableOpacity>
 
-            <TouchableOpacity className="w-100 h-100 rounded-md items-center justify-center bg-[#06B2BE]">
+            <TouchableOpacity className="w-10 h-10 rounded-md items-center justify-center bg-[#06B2BE]">
               <FontAwesome5 name="heartbeat" size={20} color="#fff" />
             </TouchableOpacity>
           </View>
@@ -138,17 +140,19 @@ const ItemDetailsScreen = ({ route }) => {
         )}
 
         <View className="space-y-2 mt-4 bg-gray-100 rounded-2xl px-4 py-2">
+
+     
           {data?.phone && (
             <View className="flex-row items-center space-x-6">
               <FontAwesome name="phone" size={24} color="#428288" />
-              <Text>{data?.name}</Text>
+              <Text>{data?.phone}</Text>
             </View>
           )}
 
-          {data?.email && (
+          {data?.email !==  'undefined' && (
             <View className="flex-row items-center space-x-6">
               <FontAwesome name="envelope" size={24} color="#428288" />
-              <Text>{data?.email}</Text>
+              <Text>{data?.email || 'N/A'}</Text>
             </View>
           )}
 

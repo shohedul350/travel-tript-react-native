@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-const MenuContainer = ( { title, imageSrc, type,setType }) => {
+const MenuContainer = ( { title, name, imageSrc, type,setType }) => {
   const handlePress = () =>{
-    setType(title)
+    setType(name)
   }
   return (
     <TouchableOpacity className="items-center justify-center space-y-2" onPress={handlePress}>
